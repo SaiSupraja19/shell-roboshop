@@ -2,7 +2,7 @@
 AMI_ID="ami-09a2f74ce8538e414"       
 INSTANCE_TYPE="t3.micro"             
 KEY_NAME="key"            
-SECURITY_GROUP_ID="sg-0123456789abcdef0" 
+SECURITY_GROUP_ID="sg-0906d490b1f516e79" 
 INSTANCE_NAME="Shell-Roboshop"
 
 echo "Launching EC2 instance in $REGION..."
