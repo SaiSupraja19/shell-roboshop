@@ -14,6 +14,6 @@ INSTANCE_ID=$(aws ec2 run-instances \
     --instance-type "$INSTANCE_TYPE" \
     --key-name "$KEY_NAME" \
     --security-group-ids "$SECURITY_GROUP_ID" \
-    --tag-specifications "Tags=[{Key=Name,Value=$INSTANCE_NAME}]" \
+    --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" \
     --query 'Instances[0].InstanceId' \
     --output text)
