@@ -22,11 +22,11 @@ VALIDATE() {
 
 CHECK_ROOT
 
-dnf module disable nodejs -y
-VALIDATE $? "Disabling default version"
+# dnf module disable nodejs -y
+# VALIDATE $? "Disabling default version"
 
-dnf module enable nodejs:20 -y
-VALIDATE $? "Enabling version required"
+# dnf module enable nodejs:20 -y
+# VALIDATE $? "Enabling version required"
 
 dnf install nodejs -y
 VALIDATE $? "Installing Nodejs"
