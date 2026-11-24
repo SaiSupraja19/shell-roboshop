@@ -1,9 +1,6 @@
 #!/bin/bash
 
 USER= $(id -u)
-
-mkdir -p /var/log/shell-roboshop
-
 LOGS_FOLDER= "/var/log/shell-roboshop"
 LOGS_FILE= "$LOGS_FOLDER/$0.log"
 
@@ -24,6 +21,7 @@ VALIDATE() {
 }
 
 CHECK_ROOT
+
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGS_FILE
 VALIDATE $? "Copying mongo file"
