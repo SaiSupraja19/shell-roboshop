@@ -3,6 +3,7 @@
 USER=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
+SCRIPT_DIR=$PWD
 
 CHECK_ROOT() {
     if [ "$USER" != 0 ]; then
@@ -31,22 +32,31 @@ CHECK_ROOT
 dnf install nodejs -y &>>$LOGS_FILE
 VALIDATE $? "Installing Nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
-VALIDATE $? "Creating system user"
+id roboshop
+if [ $? != 0 ]; then
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
+    VALIDATE $? "Creating system user"
+else 
+    echo "Roboshop user already exists...SKIPPING"
+fi
 
-mkdir /app &>>$LOGS_FILE
+mkdir -p /app &>>$LOGS_FILE
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOGS_FILE
 VALIDATE $? "Copying code from developer"
 
 cd /app
+
+rm -rf /app/* 
+VALIDATE $? "Removing existig code"
+
 unzip /tmp/catalogue.zip &>>$LOGS_FILE
 VALIDATE $? "Unzipping the code to /app directory"
 
 npm install  &>>$LOGS_FILE
 VALIDATE $? "Installing dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service &>>$LOGS_FILE
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGS_FILE
 VALIDATE $? "Copying service file"
 
 systemctl daemon-reload &>>$LOGS_FILE
