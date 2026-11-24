@@ -28,30 +28,30 @@ CHECK_ROOT
 # dnf module enable nodejs:20 -y
 # VALIDATE $? "Enabling version required"
 
-dnf install nodejs -y
+dnf install nodejs -y &>>$LOGS_FILE
 VALIDATE $? "Installing Nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOGS_FILE
 VALIDATE $? "Creating system user"
 
-mkdir /app 
+mkdir /app &>>$LOGS_FILE
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOGS_FILE
 VALIDATE $? "Copying code from developer"
 
 cd /app
-unzip /tmp/catalogue.zip 
+unzip /tmp/catalogue.zip &>>$LOGS_FILE
 VALIDATE $? "Unzipping the code to /app directory"
 
-npm install
+npm install  &>>$LOGS_FILE
 VALIDATE $? "Installing dependencies"
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp catalogue.service /etc/systemd/system/catalogue.service &>>$LOGS_FILE
 VALIDATE $? "Copying service file"
 
-systemctl daemon-reload
+systemctl daemon-reload &>>$LOGS_FILE
 VALIDATE $? "Reloading the server"
 
 systemctl enable catalogue 
-systemctl start catalogue
+systemctl start catalogue &>>$LOGS_FILE
 VALIDATE $?  "Enabling and starting the server"
