@@ -1,10 +1,12 @@
 #!/bin/bash
 
 USER= $(id -u)
+
+mkdir -p /var/log/shell-roboshop
+
 LOGS_FOLDER= "/var/log/shell-roboshop"
 LOGS_FILE= "$LOGS_FOLDER/$0.log"
 
-mkdir -p /var/log/shell-roboshop
 
 CHECK_ROOT() {
     if [ $USER ! = 0 ]; then
