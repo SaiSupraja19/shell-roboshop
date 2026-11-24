@@ -1,8 +1,8 @@
 #!/bin/bash
 
-USER= $(id -u)
-LOGS_FOLDER= "/var/log/shell-roboshop"
-LOGS_FILE= "$LOGS_FOLDER/$0.log"
+USER=$(id -u)
+LOGS_FOLDER="/var/log/shell-roboshop"
+LOGS_FILE="$LOGS_FOLDER/$0.log"
 
 
 CHECK_ROOT() {
