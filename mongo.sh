@@ -13,7 +13,7 @@ CHECK_ROOT() {
 }
 
 VALIDATE() {
-    if [ $1 != 0 ]; then
+    if [ "$1" != 0 ]; then
         echo "$2...FAILURE"
         exit 1
     else
@@ -22,7 +22,7 @@ VALIDATE() {
 }
 
 CHECK_ROOT
-
+ 
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LOGS_FILE
 VALIDATE $? "Copying mongo file"
