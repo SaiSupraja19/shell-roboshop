@@ -1,7 +1,7 @@
 #!/bin/bash
 AMI_ID="ami-09a2f74ce8538e414"      # Replace with your region's AMI ID
 INSTANCE_TYPE="t3.micro"
-KEY_NAME="key"
+KEY_NAME="Key"
 SECURITY_GROUP="sg-0a625a7e6ccb3d743"
 
 # List of server names to create
