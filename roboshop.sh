@@ -2,7 +2,7 @@
 AMI_ID="ami-09a2f74ce8538e414"      # Replace with your region's AMI ID
 INSTANCE_TYPE="t3.micro"
 KEY_NAME="key"
-SECURITY_GROUP="sg-0aae9f08f1510741c"
+SECURITY_GROUP="sg-0a625a7e6ccb3d743"
 
 # List of server names to create
 INSTANCES=("mongo-db" "catalogue" "frontend" "redis")
