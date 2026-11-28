@@ -1,19 +1,19 @@
 #!/bin/bash
 
-USER=$(id -u)
+USER_ID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 
 
 CHECK_ROOT() {
-    if [ "$USER" != 0 ]; then
+    if [[ "$USER_ID" -ne 0 ]]; then
         echo "Please execute this with root user"
         exit 1
     fi
 }
 
 VALIDATE() {
-    if [ "$1" != 0 ]; then
+    if [[ "$1" -ne 0 ]]; then
         echo "$2...FAILURE"
         exit 1
     else
